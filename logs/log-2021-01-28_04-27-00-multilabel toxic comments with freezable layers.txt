@@ -1,0 +1,926 @@
+01/28/2021 04:27:03 - INFO - root -   {'run_text': 'multilabel toxic comments with freezable layers', 'train_size': -1, 'val_size': -1, 'log_path': WindowsPath('logs'), 'full_data_dir': WindowsPath('data'), 'data_dir': WindowsPath('data'), 'task_name': 'intent', 'no_cuda': False, 'bert_model': WindowsPath('bert_models/uncased_L-12_H-768_A-12'), 'output_dir': WindowsPath('models/output'), 'max_seq_length': 256, 'do_train': True, 'do_eval': True, 'do_lower_case': True, 'train_batch_size': 8, 'eval_batch_size': 16, 'learning_rate': 5e-05, 'num_train_epochs': 6, 'warmup_proportion': 0.0, 'local_rank': -1, 'seed': 42, 'gradient_accumulation_steps': 1, 'optimize_on_cpu': False, 'fp16': True, 'fp16_opt_level': 'O1', 'weight_decay': 0.0, 'adam_epsilon': 1e-08, 'max_grad_norm': 1.0, 'max_steps': -1, 'warmup_steps': 500, 'logging_steps': 50, 'eval_all_checkpoints': True, 'overwrite_output_dir': True, 'overwrite_cache': False, 'loss_scale': 128, 'model_name': 'bert-base-cased', 'model_type': 'bert'}
+01/28/2021 04:28:15 - INFO - root -   Formatting corpus for data\lm_train.txt
+01/28/2021 04:28:15 - INFO - root -   Formatting corpus for data\lm_val.txt
+01/28/2021 04:28:15 - INFO - transformers.tokenization_utils_base -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-cased-vocab.txt from cache at C:\Users\Raja/.cache\torch\transformers\5e8a2b4893d13790ed4150ca1906be5f7a03d6c4ddf62296c383f6db42814db2.e13dbb970cb325137104fb2e5f36fe865f27746c6b526f6352861b1980eb80b1
+01/28/2021 04:28:15 - INFO - root -   Loading features from cached file data\lm_cache\cached_bert_train_256
+01/28/2021 04:28:15 - INFO - root -   Loading features from cached file data\lm_cache\cached_bert_dev_256
+01/28/2021 04:28:20 - INFO - transformers.configuration_utils -   loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-cased-config.json from cache at C:\Users\Raja/.cache\torch\transformers\b945b69218e98b3e2c95acf911789741307dec43c698d35fad11c1ae28bda352.9da767be51e1327499df13488672789394e2ca38b877837e52618a67d7002391
+01/28/2021 04:28:20 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "gradient_checkpointing": false,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "type_vocab_size": 2,
+  "vocab_size": 28996
+}
+
+01/28/2021 04:28:20 - INFO - transformers.modeling_utils -   loading weights file https://cdn.huggingface.co/bert-base-cased-pytorch_model.bin from cache at C:\Users\Raja/.cache\torch\transformers\d8f11f061e407be64c4d5d7867ee61d1465263e24085cfa26abf183fdc830569.3fadbea36527ae472139fe84cddaa65454d7429f12d543d80bfc3ad70de55ac2
+01/28/2021 04:28:22 - WARNING - transformers.modeling_utils -   Some weights of the model checkpoint at bert-base-cased were not used when initializing BertForMaskedLM: ['cls.seq_relationship.weight', 'cls.seq_relationship.bias']
+- This IS expected if you are initializing BertForMaskedLM from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPretraining model).
+- This IS NOT expected if you are initializing BertForMaskedLM from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+01/28/2021 04:28:22 - WARNING - transformers.modeling_utils -   Some weights of BertForMaskedLM were not initialized from the model checkpoint at bert-base-cased and are newly initialized: ['cls.predictions.decoder.bias']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+01/28/2021 04:28:28 - INFO - root -   ***** Running training *****
+01/28/2021 04:28:28 - INFO - root -     Num examples = 819
+01/28/2021 04:28:28 - INFO - root -     Num Epochs = 2
+01/28/2021 04:28:28 - INFO - root -     Total train batch size (w. parallel, distributed & accumulation) = 16
+01/28/2021 04:28:28 - INFO - root -     Gradient Accumulation steps = 1
+01/28/2021 04:28:28 - INFO - root -     Total optimization steps = 104
+01/28/2021 04:29:02 - INFO - root -   Running evaluation
+01/28/2021 04:29:02 - INFO - root -   Num examples = 89
+01/28/2021 04:29:02 - INFO - root -   Validation Batch size = 32
+01/28/2021 04:29:03 - INFO - root -   eval_loss after step 50: 0.24422923227151236: 
+01/28/2021 04:29:03 - INFO - root -   eval_perplexity after step 50: 1.2766369581222534: 
+01/28/2021 04:29:03 - INFO - root -   lr after step 50: 5.3018924871114305e-05
+01/28/2021 04:29:03 - INFO - root -   train_loss after step 50: 4.196002154350281
+01/28/2021 04:29:04 - INFO - root -   Running evaluation
+01/28/2021 04:29:04 - INFO - root -   Num examples = 89
+01/28/2021 04:29:04 - INFO - root -   Validation Batch size = 32
+01/28/2021 04:29:05 - INFO - root -   eval_loss after epoch 1: 0.24723303318023682: 
+01/28/2021 04:29:05 - INFO - root -   eval_perplexity after epoch 1: 1.280477523803711: 
+01/28/2021 04:29:05 - INFO - root -   lr after epoch 1: 5e-05
+01/28/2021 04:29:05 - INFO - root -   train_loss after epoch 1: 4.193468451499939
+01/28/2021 04:29:05 - INFO - root -   
+
+01/28/2021 04:29:38 - INFO - root -   Running evaluation
+01/28/2021 04:29:38 - INFO - root -   Num examples = 89
+01/28/2021 04:29:38 - INFO - root -   Validation Batch size = 32
+01/28/2021 04:29:39 - INFO - root -   eval_loss after step 100: 0.23056168854236603: 
+01/28/2021 04:29:39 - INFO - root -   eval_perplexity after step 100: 1.2593071460723877: 
+01/28/2021 04:29:39 - INFO - root -   lr after step 100: 3.6455629509730136e-07
+01/28/2021 04:29:39 - INFO - root -   train_loss after step 100: 3.8471651792526247
+01/28/2021 04:29:42 - INFO - root -   Running evaluation
+01/28/2021 04:29:42 - INFO - root -   Num examples = 89
+01/28/2021 04:29:42 - INFO - root -   Validation Batch size = 32
+01/28/2021 04:29:42 - INFO - root -   eval_loss after epoch 2: 0.2308135131994883: 
+01/28/2021 04:29:42 - INFO - root -   eval_perplexity after epoch 2: 1.2596243619918823: 
+01/28/2021 04:29:42 - INFO - root -   lr after epoch 2: 0.0
+01/28/2021 04:29:42 - INFO - root -   train_loss after epoch 2: 3.829105643125681
+01/28/2021 04:29:42 - INFO - root -   
+
+01/28/2021 04:29:43 - INFO - root -   Running evaluation
+01/28/2021 04:29:43 - INFO - root -   Num examples = 89
+01/28/2021 04:29:43 - INFO - root -   Validation Batch size = 32
+01/28/2021 04:30:56 - INFO - root -   ***** Running training *****
+01/28/2021 04:30:56 - INFO - root -     Num examples = 819
+01/28/2021 04:30:56 - INFO - root -     Num Epochs = 2
+01/28/2021 04:30:56 - INFO - root -     Total train batch size (w. parallel, distributed & accumulation) = 16
+01/28/2021 04:30:56 - INFO - root -     Gradient Accumulation steps = 1
+01/28/2021 04:30:56 - INFO - root -     Total optimization steps = 104
+01/28/2021 04:31:13 - INFO - root -   ***** Running training *****
+01/28/2021 04:31:13 - INFO - root -     Num examples = 819
+01/28/2021 04:31:13 - INFO - root -     Num Epochs = 3
+01/28/2021 04:31:13 - INFO - root -     Total train batch size (w. parallel, distributed & accumulation) = 16
+01/28/2021 04:31:13 - INFO - root -     Gradient Accumulation steps = 1
+01/28/2021 04:31:13 - INFO - root -     Total optimization steps = 156
+01/28/2021 04:31:49 - INFO - root -   Running evaluation
+01/28/2021 04:31:49 - INFO - root -   Num examples = 89
+01/28/2021 04:31:49 - INFO - root -   Validation Batch size = 32
+01/28/2021 04:31:50 - INFO - root -   eval_loss after step 50: 0.21663584808508554: 
+01/28/2021 04:31:50 - INFO - root -   eval_perplexity after step 50: 1.2418917417526245: 
+01/28/2021 04:31:50 - INFO - root -   lr after step 50: 7.672329130639005e-05
+01/28/2021 04:31:50 - INFO - root -   train_loss after step 50: 3.7635117864608763
+01/28/2021 04:31:51 - INFO - root -   Running evaluation
+01/28/2021 04:31:51 - INFO - root -   Num examples = 89
+01/28/2021 04:31:51 - INFO - root -   Validation Batch size = 32
+01/28/2021 04:31:52 - INFO - root -   eval_loss after epoch 1: 0.19833687444527945: 
+01/28/2021 04:31:52 - INFO - root -   eval_perplexity after epoch 1: 1.219373106956482: 
+01/28/2021 04:31:52 - INFO - root -   lr after epoch 1: 7.500000000000001e-05
+01/28/2021 04:31:52 - INFO - root -   train_loss after epoch 1: 3.761338871258956
+01/28/2021 04:31:52 - INFO - root -   
+
+01/28/2021 04:32:26 - INFO - root -   Running evaluation
+01/28/2021 04:32:26 - INFO - root -   Num examples = 89
+01/28/2021 04:32:26 - INFO - root -   Validation Batch size = 32
+01/28/2021 04:32:27 - INFO - root -   eval_loss after step 100: 0.18466366330782572: 
+01/28/2021 04:32:27 - INFO - root -   eval_perplexity after step 100: 1.2028138637542725: 
+01/28/2021 04:32:27 - INFO - root -   lr after step 100: 2.8565371929847284e-05
+01/28/2021 04:32:27 - INFO - root -   train_loss after step 100: 3.5989276361465454
+01/28/2021 04:32:29 - INFO - root -   Running evaluation
+01/28/2021 04:32:29 - INFO - root -   Num examples = 89
+01/28/2021 04:32:29 - INFO - root -   Validation Batch size = 32
+01/28/2021 04:32:30 - INFO - root -   eval_loss after epoch 2: 0.19262702266375223: 
+01/28/2021 04:32:30 - INFO - root -   eval_perplexity after epoch 2: 1.212430477142334: 
+01/28/2021 04:32:30 - INFO - root -   lr after epoch 2: 2.500000000000001e-05
+01/28/2021 04:32:30 - INFO - root -   train_loss after epoch 2: 3.591818768244523
+01/28/2021 04:32:30 - INFO - root -   
+
+01/28/2021 04:33:03 - INFO - root -   Running evaluation
+01/28/2021 04:33:03 - INFO - root -   Num examples = 89
+01/28/2021 04:33:03 - INFO - root -   Validation Batch size = 32
+01/28/2021 04:33:04 - INFO - root -   eval_loss after step 150: 0.17987359563509622: 
+01/28/2021 04:33:04 - INFO - root -   eval_perplexity after step 150: 1.197066068649292: 
+01/28/2021 04:33:04 - INFO - root -   lr after step 150: 3.6455629509730136e-07
+01/28/2021 04:33:04 - INFO - root -   train_loss after step 150: 3.487503833770752
+01/28/2021 04:33:08 - INFO - root -   Running evaluation
+01/28/2021 04:33:08 - INFO - root -   Num examples = 89
+01/28/2021 04:33:08 - INFO - root -   Validation Batch size = 32
+01/28/2021 04:33:09 - INFO - root -   eval_loss after epoch 3: 0.18009193738301596: 
+01/28/2021 04:33:09 - INFO - root -   eval_perplexity after epoch 3: 1.1973273754119873: 
+01/28/2021 04:33:09 - INFO - root -   lr after epoch 3: 0.0
+01/28/2021 04:33:09 - INFO - root -   train_loss after epoch 3: 3.477690494977511
+01/28/2021 04:33:09 - INFO - root -   
+
+01/28/2021 04:33:43 - INFO - root -   Running evaluation
+01/28/2021 04:33:43 - INFO - root -   Num examples = 89
+01/28/2021 04:33:43 - INFO - root -   Validation Batch size = 32
+01/28/2021 04:34:05 - INFO - transformers.configuration_utils -   Configuration saved in models\model_out\config.json
+01/28/2021 04:34:06 - INFO - transformers.modeling_utils -   Model weights saved in models\model_out\pytorch_model.bin
+01/28/2021 04:34:14 - INFO - transformers.configuration_utils -   loading configuration file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-cased-config.json from cache at C:\Users\Raja/.cache\torch\transformers\b945b69218e98b3e2c95acf911789741307dec43c698d35fad11c1ae28bda352.9da767be51e1327499df13488672789394e2ca38b877837e52618a67d7002391
+01/28/2021 04:34:14 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "gradient_checkpointing": false,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "type_vocab_size": 2,
+  "vocab_size": 28996
+}
+
+01/28/2021 04:34:15 - INFO - transformers.tokenization_utils_base -   loading file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-cased-vocab.txt from cache at C:\Users\Raja/.cache\torch\transformers\5e8a2b4893d13790ed4150ca1906be5f7a03d6c4ddf62296c383f6db42814db2.e13dbb970cb325137104fb2e5f36fe865f27746c6b526f6352861b1980eb80b1
+01/28/2021 04:34:15 - INFO - root -   Loading features from cached file data\cache\cached_bert_train_multi_label_256_train_sample.csv
+01/28/2021 04:34:15 - INFO - root -   Loading features from cached file data\cache\cached_bert_dev_multi_label_256_val_sample.csv
+01/28/2021 04:34:42 - INFO - transformers.configuration_utils -   loading configuration file models/model_out\config.json
+01/28/2021 04:34:42 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "gradient_checkpointing": false,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1",
+    "2": "LABEL_2",
+    "3": "LABEL_3",
+    "4": "LABEL_4",
+    "5": "LABEL_5",
+    "6": "LABEL_6",
+    "7": "LABEL_7",
+    "8": "LABEL_8",
+    "9": "LABEL_9",
+    "10": "LABEL_10",
+    "11": "LABEL_11",
+    "12": "LABEL_12",
+    "13": "LABEL_13",
+    "14": "LABEL_14",
+    "15": "LABEL_15",
+    "16": "LABEL_16"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1,
+    "LABEL_10": 10,
+    "LABEL_11": 11,
+    "LABEL_12": 12,
+    "LABEL_13": 13,
+    "LABEL_14": 14,
+    "LABEL_15": 15,
+    "LABEL_16": 16,
+    "LABEL_2": 2,
+    "LABEL_3": 3,
+    "LABEL_4": 4,
+    "LABEL_5": 5,
+    "LABEL_6": 6,
+    "LABEL_7": 7,
+    "LABEL_8": 8,
+    "LABEL_9": 9
+  },
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "type_vocab_size": 2,
+  "vocab_size": 28996
+}
+
+01/28/2021 04:34:42 - INFO - transformers.modeling_utils -   loading weights file models/model_out\pytorch_model.bin
+01/28/2021 04:34:43 - WARNING - transformers.modeling_utils -   Some weights of the model checkpoint at models/model_out were not used when initializing BertForMultiLabelSequenceClassification: ['cls.predictions.bias', 'cls.predictions.transform.dense.weight', 'cls.predictions.transform.dense.bias', 'cls.predictions.transform.LayerNorm.weight', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.decoder.weight', 'cls.predictions.decoder.bias']
+- This IS expected if you are initializing BertForMultiLabelSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPretraining model).
+- This IS NOT expected if you are initializing BertForMultiLabelSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+01/28/2021 04:34:43 - WARNING - transformers.modeling_utils -   Some weights of BertForMultiLabelSequenceClassification were not initialized from the model checkpoint at models/model_out and are newly initialized: ['classifier.weight', 'classifier.bias']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+01/28/2021 04:34:46 - INFO - root -   ***** Running training *****
+01/28/2021 04:34:46 - INFO - root -     Num examples = 4812
+01/28/2021 04:34:46 - INFO - root -     Num Epochs = 5
+01/28/2021 04:34:46 - INFO - root -     Total train batch size (w. parallel, distributed & accumulation) = 8
+01/28/2021 04:34:46 - INFO - root -     Gradient Accumulation steps = 1
+01/28/2021 04:34:46 - INFO - root -     Total optimization steps = 3010
+01/28/2021 04:34:54 - INFO - root -   Running evaluation
+01/28/2021 04:34:54 - INFO - root -     Num examples = 1204
+01/28/2021 04:34:54 - INFO - root -     Batch size = 16
+01/28/2021 04:34:57 - INFO - root -   eval_loss after step 50: 0.610670299122208: 
+01/28/2021 04:34:57 - INFO - root -   eval_roc_auc after step 50: 0.49678679991804725: 
+01/28/2021 04:34:57 - INFO - root -   eval_fbeta after step 50: 0.22780407965183258: 
+01/28/2021 04:34:57 - INFO - root -   lr after step 50: 2.0000000000000003e-06
+01/28/2021 04:34:57 - INFO - root -   train_loss after step 50: 0.6407855987548828
+01/28/2021 04:35:05 - INFO - root -   Running evaluation
+01/28/2021 04:35:05 - INFO - root -     Num examples = 1204
+01/28/2021 04:35:05 - INFO - root -     Batch size = 16
+01/28/2021 04:35:08 - INFO - root -   eval_loss after step 100: 0.4995416936121489: 
+01/28/2021 04:35:08 - INFO - root -   eval_roc_auc after step 100: 0.5075412859336541: 
+01/28/2021 04:35:08 - INFO - root -   eval_fbeta after step 100: 0.22757746279239655: 
+01/28/2021 04:35:08 - INFO - root -   lr after step 100: 4.000000000000001e-06
+01/28/2021 04:35:08 - INFO - root -   train_loss after step 100: 0.5667625337839126
+01/28/2021 04:35:15 - INFO - root -   Running evaluation
+01/28/2021 04:35:15 - INFO - root -     Num examples = 1204
+01/28/2021 04:35:15 - INFO - root -     Batch size = 16
+01/28/2021 04:35:18 - INFO - root -   eval_loss after step 150: 0.3331790401747352: 
+01/28/2021 04:35:18 - INFO - root -   eval_roc_auc after step 150: 0.5415535260717321: 
+01/28/2021 04:35:18 - INFO - root -   eval_fbeta after step 150: 0.05550941452383995: 
+01/28/2021 04:35:18 - INFO - root -   lr after step 150: 6e-06
+01/28/2021 04:35:18 - INFO - root -   train_loss after step 150: 0.4251325011253357
+01/28/2021 04:35:26 - INFO - root -   Running evaluation
+01/28/2021 04:35:26 - INFO - root -     Num examples = 1204
+01/28/2021 04:35:26 - INFO - root -     Batch size = 16
+01/28/2021 04:35:28 - INFO - root -   eval_loss after step 200: 0.25725030624552775: 
+01/28/2021 04:35:28 - INFO - root -   eval_roc_auc after step 200: 0.5625915328611163: 
+01/28/2021 04:35:28 - INFO - root -   eval_fbeta after step 200: 0.0: 
+01/28/2021 04:35:28 - INFO - root -   lr after step 200: 8.000000000000001e-06
+01/28/2021 04:35:28 - INFO - root -   train_loss after step 200: 0.2997253602743149
+01/28/2021 04:35:36 - INFO - root -   Running evaluation
+01/28/2021 04:35:36 - INFO - root -     Num examples = 1204
+01/28/2021 04:35:36 - INFO - root -     Batch size = 16
+01/28/2021 04:35:39 - INFO - root -   eval_loss after step 250: 0.23408038541674614: 
+01/28/2021 04:35:39 - INFO - root -   eval_roc_auc after step 250: 0.6111824398668336: 
+01/28/2021 04:35:39 - INFO - root -   eval_fbeta after step 250: 0.0: 
+01/28/2021 04:35:39 - INFO - root -   lr after step 250: 1e-05
+01/28/2021 04:35:39 - INFO - root -   train_loss after step 250: 0.250577806532383
+01/28/2021 04:35:46 - INFO - root -   Running evaluation
+01/28/2021 04:35:46 - INFO - root -     Num examples = 1204
+01/28/2021 04:35:46 - INFO - root -     Batch size = 16
+01/28/2021 04:35:49 - INFO - root -   eval_loss after step 300: 0.22248337555088496: 
+01/28/2021 04:35:49 - INFO - root -   eval_roc_auc after step 300: 0.6899924273048863: 
+01/28/2021 04:35:49 - INFO - root -   eval_fbeta after step 300: 0.0: 
+01/28/2021 04:35:49 - INFO - root -   lr after step 300: 1.2e-05
+01/28/2021 04:35:49 - INFO - root -   train_loss after step 300: 0.23210350811481475
+01/28/2021 04:35:56 - INFO - root -   Running evaluation
+01/28/2021 04:35:56 - INFO - root -     Num examples = 1204
+01/28/2021 04:35:56 - INFO - root -     Batch size = 16
+01/28/2021 04:35:59 - INFO - root -   eval_loss after step 350: 0.21198754012584686: 
+01/28/2021 04:35:59 - INFO - root -   eval_roc_auc after step 350: 0.7472090884758446: 
+01/28/2021 04:35:59 - INFO - root -   eval_fbeta after step 350: 0.001661129528656602: 
+01/28/2021 04:35:59 - INFO - root -   lr after step 350: 1.4e-05
+01/28/2021 04:35:59 - INFO - root -   train_loss after step 350: 0.22090808123350145
+01/28/2021 04:36:07 - INFO - root -   Running evaluation
+01/28/2021 04:36:07 - INFO - root -     Num examples = 1204
+01/28/2021 04:36:07 - INFO - root -     Batch size = 16
+01/28/2021 04:36:09 - INFO - root -   eval_loss after step 400: 0.19590205581564651: 
+01/28/2021 04:36:09 - INFO - root -   eval_roc_auc after step 400: 0.8667465211476695: 
+01/28/2021 04:36:09 - INFO - root -   eval_fbeta after step 400: 0.058970097452402115: 
+01/28/2021 04:36:09 - INFO - root -   lr after step 400: 1.6000000000000003e-05
+01/28/2021 04:36:09 - INFO - root -   train_loss after step 400: 0.2093832713365555
+01/28/2021 04:36:17 - INFO - root -   Running evaluation
+01/28/2021 04:36:17 - INFO - root -     Num examples = 1204
+01/28/2021 04:36:17 - INFO - root -     Batch size = 16
+01/28/2021 04:36:19 - INFO - root -   eval_loss after step 450: 0.17663045521629483: 
+01/28/2021 04:36:19 - INFO - root -   eval_roc_auc after step 450: 0.928323216286244: 
+01/28/2021 04:36:19 - INFO - root -   eval_fbeta after step 450: 0.14784052968025208: 
+01/28/2021 04:36:19 - INFO - root -   lr after step 450: 1.8e-05
+01/28/2021 04:36:19 - INFO - root -   train_loss after step 450: 0.19402746140956878
+01/28/2021 04:36:27 - INFO - root -   Running evaluation
+01/28/2021 04:36:27 - INFO - root -     Num examples = 1204
+01/28/2021 04:36:27 - INFO - root -     Batch size = 16
+01/28/2021 04:36:29 - INFO - root -   eval_loss after step 500: 0.15597234097750565: 
+01/28/2021 04:36:29 - INFO - root -   eval_roc_auc after step 500: 0.9444164652914978: 
+01/28/2021 04:36:29 - INFO - root -   eval_fbeta after step 500: 0.48255813121795654: 
+01/28/2021 04:36:29 - INFO - root -   lr after step 500: 2e-05
+01/28/2021 04:36:29 - INFO - root -   train_loss after step 500: 0.17294346272945404
+01/28/2021 04:36:37 - INFO - root -   Running evaluation
+01/28/2021 04:36:37 - INFO - root -     Num examples = 1204
+01/28/2021 04:36:37 - INFO - root -     Batch size = 16
+01/28/2021 04:36:40 - INFO - root -   eval_loss after step 550: 0.13582337824137589: 
+01/28/2021 04:36:40 - INFO - root -   eval_roc_auc after step 550: 0.9550918570849107: 
+01/28/2021 04:36:40 - INFO - root -   eval_fbeta after step 550: 0.702519416809082: 
+01/28/2021 04:36:40 - INFO - root -   lr after step 550: 1.9980424152647174e-05
+01/28/2021 04:36:40 - INFO - root -   train_loss after step 550: 0.15460361093282698
+01/28/2021 04:36:47 - INFO - root -   Running evaluation
+01/28/2021 04:36:47 - INFO - root -     Num examples = 1204
+01/28/2021 04:36:47 - INFO - root -     Batch size = 16
+01/28/2021 04:36:50 - INFO - root -   eval_loss after step 600: 0.12169845039515119: 
+01/28/2021 04:36:50 - INFO - root -   eval_roc_auc after step 600: 0.9626766243612102: 
+01/28/2021 04:36:50 - INFO - root -   eval_fbeta after step 600: 0.7707641124725342: 
+01/28/2021 04:36:50 - INFO - root -   lr after step 600: 1.9921773253348604e-05
+01/28/2021 04:36:50 - INFO - root -   train_loss after step 600: 0.13813772797584534
+01/28/2021 04:36:50 - INFO - root -   Running evaluation
+01/28/2021 04:36:50 - INFO - root -     Num examples = 1204
+01/28/2021 04:36:50 - INFO - root -     Batch size = 16
+01/28/2021 04:36:53 - INFO - root -   eval_loss after epoch 1: 0.12119031246555478: 
+01/28/2021 04:36:53 - INFO - root -   eval_roc_auc after epoch 1: 0.963586671401254: 
+01/28/2021 04:36:53 - INFO - root -   eval_fbeta after epoch 1: 0.7491694092750549: 
+01/28/2021 04:36:53 - INFO - root -   lr after epoch 1: 1.991861718629202e-05
+01/28/2021 04:36:53 - INFO - root -   train_loss after epoch 1: 0.29153158057765705
+01/28/2021 04:36:53 - INFO - root -   
+
+01/28/2021 04:37:00 - INFO - root -   Running evaluation
+01/28/2021 04:37:00 - INFO - root -     Num examples = 1204
+01/28/2021 04:37:00 - INFO - root -     Batch size = 16
+01/28/2021 04:37:03 - INFO - root -   eval_loss after step 650: 0.1066965495089167: 
+01/28/2021 04:37:03 - INFO - root -   eval_roc_auc after step 650: 0.9679606099132461: 
+01/28/2021 04:37:03 - INFO - root -   eval_fbeta after step 650: 0.8192137479782104: 
+01/28/2021 04:37:03 - INFO - root -   lr after step 650: 1.982427693031465e-05
+01/28/2021 04:37:03 - INFO - root -   train_loss after step 650: 0.11821028217673302
+01/28/2021 04:37:10 - INFO - root -   Running evaluation
+01/28/2021 04:37:10 - INFO - root -     Num examples = 1204
+01/28/2021 04:37:10 - INFO - root -     Batch size = 16
+01/28/2021 04:37:13 - INFO - root -   eval_loss after step 700: 0.09813992159539148: 
+01/28/2021 04:37:13 - INFO - root -   eval_roc_auc after step 700: 0.9715442313688591: 
+01/28/2021 04:37:13 - INFO - root -   eval_fbeta after step 700: 0.8491140604019165: 
+01/28/2021 04:37:13 - INFO - root -   lr after step 700: 1.9688316898172744e-05
+01/28/2021 04:37:13 - INFO - root -   train_loss after step 700: 0.11115967586636544
+01/28/2021 04:37:20 - INFO - root -   Running evaluation
+01/28/2021 04:37:20 - INFO - root -     Num examples = 1204
+01/28/2021 04:37:20 - INFO - root -     Batch size = 16
+01/28/2021 04:37:23 - INFO - root -   eval_loss after step 750: 0.08998174298750727: 
+01/28/2021 04:37:23 - INFO - root -   eval_roc_auc after step 750: 0.9736043674669705: 
+01/28/2021 04:37:23 - INFO - root -   eval_fbeta after step 750: 0.8603267073631287: 
+01/28/2021 04:37:23 - INFO - root -   lr after step 750: 1.9514425463489946e-05
+01/28/2021 04:37:23 - INFO - root -   train_loss after step 750: 0.10133288890123367
+01/28/2021 04:37:31 - INFO - root -   Running evaluation
+01/28/2021 04:37:31 - INFO - root -     Num examples = 1204
+01/28/2021 04:37:31 - INFO - root -     Batch size = 16
+01/28/2021 04:37:33 - INFO - root -   eval_loss after step 800: 0.08233582257832352: 
+01/28/2021 04:37:33 - INFO - root -   eval_roc_auc after step 800: 0.977978499995861: 
+01/28/2021 04:37:33 - INFO - root -   eval_fbeta after step 800: 0.8733388781547546: 
+01/28/2021 04:37:33 - INFO - root -   lr after step 800: 1.9303283440702524e-05
+01/28/2021 04:37:33 - INFO - root -   train_loss after step 800: 0.09143632277846336
+01/28/2021 04:37:41 - INFO - root -   Running evaluation
+01/28/2021 04:37:41 - INFO - root -     Num examples = 1204
+01/28/2021 04:37:41 - INFO - root -     Batch size = 16
+01/28/2021 04:37:43 - INFO - root -   eval_loss after step 850: 0.07800828469427008: 
+01/28/2021 04:37:43 - INFO - root -   eval_roc_auc after step 850: 0.9756926791301971: 
+01/28/2021 04:37:43 - INFO - root -   eval_fbeta after step 850: 0.889258086681366: 
+01/28/2021 04:37:43 - INFO - root -   lr after step 850: 1.905571748661204e-05
+01/28/2021 04:37:43 - INFO - root -   train_loss after step 850: 0.08461120702326298
+01/28/2021 04:37:51 - INFO - root -   Running evaluation
+01/28/2021 04:37:51 - INFO - root -     Num examples = 1204
+01/28/2021 04:37:51 - INFO - root -     Batch size = 16
+01/28/2021 04:37:54 - INFO - root -   eval_loss after step 900: 0.07353330423173152: 
+01/28/2021 04:37:54 - INFO - root -   eval_roc_auc after step 900: 0.9781746079651439: 
+01/28/2021 04:37:54 - INFO - root -   eval_fbeta after step 900: 0.8820597529411316: 
+01/28/2021 04:37:54 - INFO - root -   lr after step 900: 1.8772696863883905e-05
+01/28/2021 04:37:54 - INFO - root -   train_loss after step 900: 0.08586448535323143
+01/28/2021 04:38:01 - INFO - root -   Running evaluation
+01/28/2021 04:38:01 - INFO - root -     Num examples = 1204
+01/28/2021 04:38:01 - INFO - root -     Batch size = 16
+01/28/2021 04:38:04 - INFO - root -   eval_loss after step 950: 0.06844305330397267: 
+01/28/2021 04:38:04 - INFO - root -   eval_roc_auc after step 950: 0.9811752517563272: 
+01/28/2021 04:38:04 - INFO - root -   eval_fbeta after step 950: 0.9043466448783875: 
+01/28/2021 04:38:04 - INFO - root -   lr after step 950: 1.8455329646219767e-05
+01/28/2021 04:38:04 - INFO - root -   train_loss after step 950: 0.07590436831116676
+01/28/2021 04:38:12 - INFO - root -   Running evaluation
+01/28/2021 04:38:12 - INFO - root -     Num examples = 1204
+01/28/2021 04:38:12 - INFO - root -     Batch size = 16
+01/28/2021 04:38:14 - INFO - root -   eval_loss after step 1000: 0.06322588962747862: 
+01/28/2021 04:38:14 - INFO - root -   eval_roc_auc after step 1000: 0.9827128787899693: 
+01/28/2021 04:38:14 - INFO - root -   eval_fbeta after step 1000: 0.9036544561386108: 
+01/28/2021 04:38:14 - INFO - root -   lr after step 1000: 1.8104858380061178e-05
+01/28/2021 04:38:14 - INFO - root -   train_loss after step 1000: 0.07210017755627632
+01/28/2021 04:38:22 - INFO - root -   Running evaluation
+01/28/2021 04:38:22 - INFO - root -     Num examples = 1204
+01/28/2021 04:38:22 - INFO - root -     Batch size = 16
+01/28/2021 04:38:24 - INFO - root -   eval_loss after step 1050: 0.06181301990229832: 
+01/28/2021 04:38:24 - INFO - root -   eval_roc_auc after step 1050: 0.980288702318407: 
+01/28/2021 04:38:24 - INFO - root -   eval_fbeta after step 1050: 0.9014396667480469: 
+01/28/2021 04:38:24 - INFO - root -   lr after step 1050: 1.7722655219809718e-05
+01/28/2021 04:38:24 - INFO - root -   train_loss after step 1050: 0.07027476407587528
+01/28/2021 04:38:32 - INFO - root -   Running evaluation
+01/28/2021 04:38:32 - INFO - root -     Num examples = 1204
+01/28/2021 04:38:32 - INFO - root -     Batch size = 16
+01/28/2021 04:38:35 - INFO - root -   eval_loss after step 1100: 0.05837866124746047: 
+01/28/2021 04:38:35 - INFO - root -   eval_roc_auc after step 1100: 0.9812424247179944: 
+01/28/2021 04:38:35 - INFO - root -   eval_fbeta after step 1100: 0.9108527302742004: 
+01/28/2021 04:38:35 - INFO - root -   lr after step 1100: 1.731021655560995e-05
+01/28/2021 04:38:35 - INFO - root -   train_loss after step 1100: 0.06238208793103695
+01/28/2021 04:38:42 - INFO - root -   Running evaluation
+01/28/2021 04:38:42 - INFO - root -     Num examples = 1204
+01/28/2021 04:38:42 - INFO - root -     Batch size = 16
+01/28/2021 04:38:45 - INFO - root -   eval_loss after step 1150: 0.05520778428763151: 
+01/28/2021 04:38:45 - INFO - root -   eval_roc_auc after step 1150: 0.9850765219892716: 
+01/28/2021 04:38:45 - INFO - root -   eval_fbeta after step 1150: 0.9197120666503906: 
+01/28/2021 04:38:45 - INFO - root -   lr after step 1150: 1.6869157154728437e-05
+01/28/2021 04:38:45 - INFO - root -   train_loss after step 1150: 0.06071607582271099
+01/28/2021 04:38:52 - INFO - root -   Running evaluation
+01/28/2021 04:38:52 - INFO - root -     Num examples = 1204
+01/28/2021 04:38:52 - INFO - root -     Batch size = 16
+01/28/2021 04:38:55 - INFO - root -   eval_loss after step 1200: 0.052431477331801465: 
+01/28/2021 04:38:55 - INFO - root -   eval_roc_auc after step 1200: 0.984645028407523: 
+01/28/2021 04:38:55 - INFO - root -   eval_fbeta after step 1200: 0.9206810593605042: 
+01/28/2021 04:38:55 - INFO - root -   lr after step 1200: 1.6401203839466212e-05
+01/28/2021 04:38:55 - INFO - root -   train_loss after step 1200: 0.06246394775807858
+01/28/2021 04:38:56 - INFO - root -   Running evaluation
+01/28/2021 04:38:56 - INFO - root -     Num examples = 1204
+01/28/2021 04:38:56 - INFO - root -     Batch size = 16
+01/28/2021 04:38:58 - INFO - root -   eval_loss after epoch 2: 0.05239682482849611: 
+01/28/2021 04:38:58 - INFO - root -   eval_roc_auc after epoch 2: 0.983959803837706: 
+01/28/2021 04:38:58 - INFO - root -   eval_fbeta after epoch 2: 0.9195736646652222: 
+01/28/2021 04:38:58 - INFO - root -   lr after epoch 2: 1.6362659937232154e-05
+01/28/2021 04:38:58 - INFO - root -   train_loss after epoch 2: 0.08271453845194011
+01/28/2021 04:38:58 - INFO - root -   
+
+01/28/2021 04:39:05 - INFO - root -   Running evaluation
+01/28/2021 04:39:05 - INFO - root -     Num examples = 1204
+01/28/2021 04:39:05 - INFO - root -     Batch size = 16
+01/28/2021 04:39:08 - INFO - root -   eval_loss after step 1250: 0.049902882230909246: 
+01/28/2021 04:39:08 - INFO - root -   eval_roc_auc after step 1250: 0.9858779842385847: 
+01/28/2021 04:39:08 - INFO - root -   eval_fbeta after step 1250: 0.926771879196167: 
+01/28/2021 04:39:08 - INFO - root -   lr after step 1250: 1.5908188726356843e-05
+01/28/2021 04:39:08 - INFO - root -   train_loss after step 1250: 0.047782235965132716
+01/28/2021 04:39:16 - INFO - root -   Running evaluation
+01/28/2021 04:39:16 - INFO - root -     Num examples = 1204
+01/28/2021 04:39:16 - INFO - root -     Batch size = 16
+01/28/2021 04:39:18 - INFO - root -   eval_loss after step 1300: 0.04719587219388861: 
+01/28/2021 04:39:18 - INFO - root -   eval_roc_auc after step 1300: 0.9884418744343328: 
+01/28/2021 04:39:18 - INFO - root -   eval_fbeta after step 1300: 0.9271871447563171: 
+01/28/2021 04:39:18 - INFO - root -   lr after step 1300: 1.53920420531197e-05
+01/28/2021 04:39:18 - INFO - root -   train_loss after step 1300: 0.04342538930475712
+01/28/2021 04:39:26 - INFO - root -   Running evaluation
+01/28/2021 04:39:26 - INFO - root -     Num examples = 1204
+01/28/2021 04:39:26 - INFO - root -     Batch size = 16
+01/28/2021 04:39:28 - INFO - root -   eval_loss after step 1350: 0.045753714432449716: 
+01/28/2021 04:39:28 - INFO - root -   eval_roc_auc after step 1350: 0.9872523999459167: 
+01/28/2021 04:39:28 - INFO - root -   eval_fbeta after step 1350: 0.9336932897567749: 
+01/28/2021 04:39:28 - INFO - root -   lr after step 1350: 1.4854784621452176e-05
+01/28/2021 04:39:28 - INFO - root -   train_loss after step 1350: 0.04548741973936558
+01/28/2021 04:39:36 - INFO - root -   Running evaluation
+01/28/2021 04:39:36 - INFO - root -     Num examples = 1204
+01/28/2021 04:39:36 - INFO - root -     Batch size = 16
+01/28/2021 04:39:39 - INFO - root -   eval_loss after step 1400: 0.044698607666712055: 
+01/28/2021 04:39:39 - INFO - root -   eval_roc_auc after step 1400: 0.9884780262497103: 
+01/28/2021 04:39:39 - INFO - root -   eval_fbeta after step 1400: 0.9328626990318298: 
+01/28/2021 04:39:39 - INFO - root -   lr after step 1400: 1.4298519885248574e-05
+01/28/2021 04:39:39 - INFO - root -   train_loss after step 1400: 0.04218574002385139
+01/28/2021 04:39:46 - INFO - root -   Running evaluation
+01/28/2021 04:39:46 - INFO - root -     Num examples = 1204
+01/28/2021 04:39:46 - INFO - root -     Batch size = 16
+01/28/2021 04:39:49 - INFO - root -   eval_loss after step 1450: 0.04344997743732835: 
+01/28/2021 04:39:49 - INFO - root -   eval_roc_auc after step 1450: 0.9892361580584099: 
+01/28/2021 04:39:49 - INFO - root -   eval_fbeta after step 1450: 0.9338316917419434: 
+01/28/2021 04:39:49 - INFO - root -   lr after step 1450: 1.3725425715221625e-05
+01/28/2021 04:39:49 - INFO - root -   train_loss after step 1450: 0.03933308586478233
+01/28/2021 04:39:56 - INFO - root -   Running evaluation
+01/28/2021 04:39:56 - INFO - root -     Num examples = 1204
+01/28/2021 04:39:56 - INFO - root -     Batch size = 16
+01/28/2021 04:39:59 - INFO - root -   eval_loss after step 1500: 0.041188222062038746: 
+01/28/2021 04:39:59 - INFO - root -   eval_roc_auc after step 1500: 0.9898793240761692: 
+01/28/2021 04:39:59 - INFO - root -   eval_fbeta after step 1500: 0.9381229281425476: 
+01/28/2021 04:39:59 - INFO - root -   lr after step 1500: 1.3137745872169578e-05
+01/28/2021 04:39:59 - INFO - root -   train_loss after step 1500: 0.03965264949947596
+01/28/2021 04:40:07 - INFO - root -   Running evaluation
+01/28/2021 04:40:07 - INFO - root -     Num examples = 1204
+01/28/2021 04:40:07 - INFO - root -     Batch size = 16
+01/28/2021 04:40:09 - INFO - root -   eval_loss after step 1550: 0.04027423331219899: 
+01/28/2021 04:40:09 - INFO - root -   eval_roc_auc after step 1550: 0.9893772299008841: 
+01/28/2021 04:40:09 - INFO - root -   eval_fbeta after step 1550: 0.9404761791229248: 
+01/28/2021 04:40:09 - INFO - root -   lr after step 1550: 1.2537781222272423e-05
+01/28/2021 04:40:09 - INFO - root -   train_loss after step 1550: 0.037978324331343176
+01/28/2021 04:40:17 - INFO - root -   Running evaluation
+01/28/2021 04:40:17 - INFO - root -     Num examples = 1204
+01/28/2021 04:40:17 - INFO - root -     Batch size = 16
+01/28/2021 04:40:19 - INFO - root -   eval_loss after step 1600: 0.039617687267692464: 
+01/28/2021 04:40:19 - INFO - root -   eval_roc_auc after step 1600: 0.9897320005780842: 
+01/28/2021 04:40:19 - INFO - root -   eval_fbeta after step 1600: 0.9366002678871155: 
+01/28/2021 04:40:19 - INFO - root -   lr after step 1600: 1.192788072881085e-05
+01/28/2021 04:40:19 - INFO - root -   train_loss after step 1600: 0.03683364074677229
+01/28/2021 04:40:27 - INFO - root -   Running evaluation
+01/28/2021 04:40:27 - INFO - root -     Num examples = 1204
+01/28/2021 04:40:27 - INFO - root -     Batch size = 16
+01/28/2021 04:40:30 - INFO - root -   eval_loss after step 1650: 0.03711800005188898: 
+01/28/2021 04:40:30 - INFO - root -   eval_roc_auc after step 1650: 0.9913710122197879: 
+01/28/2021 04:40:30 - INFO - root -   eval_fbeta after step 1650: 0.9465670585632324: 
+01/28/2021 04:40:30 - INFO - root -   lr after step 1650: 1.1310432255576944e-05
+01/28/2021 04:40:30 - INFO - root -   train_loss after step 1650: 0.033932859599590304
+01/28/2021 04:40:37 - INFO - root -   Running evaluation
+01/28/2021 04:40:37 - INFO - root -     Num examples = 1204
+01/28/2021 04:40:37 - INFO - root -     Batch size = 16
+01/28/2021 04:40:40 - INFO - root -   eval_loss after step 1700: 0.03658032012907298: 
+01/28/2021 04:40:40 - INFO - root -   eval_roc_auc after step 1700: 0.9902234238239646: 
+01/28/2021 04:40:40 - INFO - root -   eval_fbeta after step 1700: 0.9491971135139465: 
+01/28/2021 04:40:40 - INFO - root -   lr after step 1700: 1.068785321798276e-05
+01/28/2021 04:40:40 - INFO - root -   train_loss after step 1700: 0.035445322692394254
+01/28/2021 04:40:47 - INFO - root -   Running evaluation
+01/28/2021 04:40:47 - INFO - root -     Num examples = 1204
+01/28/2021 04:40:47 - INFO - root -     Batch size = 16
+01/28/2021 04:40:50 - INFO - root -   eval_loss after step 1750: 0.035652642726506055: 
+01/28/2021 04:40:50 - INFO - root -   eval_roc_auc after step 1750: 0.9923182458319998: 
+01/28/2021 04:40:50 - INFO - root -   eval_fbeta after step 1750: 0.9503045678138733: 
+01/28/2021 04:40:50 - INFO - root -   lr after step 1750: 1.00625811184693e-05
+01/28/2021 04:40:50 - INFO - root -   train_loss after step 1750: 0.03270571980625391
+01/28/2021 04:40:58 - INFO - root -   Running evaluation
+01/28/2021 04:40:58 - INFO - root -     Num examples = 1204
+01/28/2021 04:40:58 - INFO - root -     Batch size = 16
+01/28/2021 04:41:00 - INFO - root -   eval_loss after step 1800: 0.035589409011759256: 
+01/28/2021 04:41:00 - INFO - root -   eval_roc_auc after step 1800: 0.9914612516349156: 
+01/28/2021 04:41:00 - INFO - root -   eval_fbeta after step 1800: 0.9457364678382874: 
+01/28/2021 04:41:00 - INFO - root -   lr after step 1800: 9.437064003271373e-06
+01/28/2021 04:41:00 - INFO - root -   train_loss after step 1800: 0.0313181371986866
+01/28/2021 04:41:01 - INFO - root -   Running evaluation
+01/28/2021 04:41:01 - INFO - root -     Num examples = 1204
+01/28/2021 04:41:01 - INFO - root -     Batch size = 16
+01/28/2021 04:41:04 - INFO - root -   eval_loss after epoch 3: 0.035751489236166605: 
+01/28/2021 04:41:04 - INFO - root -   eval_roc_auc after epoch 3: 0.991375797969945: 
+01/28/2021 04:41:04 - INFO - root -   eval_fbeta after epoch 3: 0.9403378367424011: 
+01/28/2021 04:41:04 - INFO - root -   lr after epoch 3: 9.362101835290386e-06
+01/28/2021 04:41:04 - INFO - root -   train_loss after epoch 3: 0.03870446077142641
+01/28/2021 04:41:04 - INFO - root -   
+
+01/28/2021 04:41:10 - INFO - root -   Running evaluation
+01/28/2021 04:41:10 - INFO - root -     Num examples = 1204
+01/28/2021 04:41:10 - INFO - root -     Batch size = 16
+01/28/2021 04:41:13 - INFO - root -   eval_loss after step 1850: 0.03601240244154867: 
+01/28/2021 04:41:13 - INFO - root -   eval_roc_auc after step 1850: 0.991257533891734: 
+01/28/2021 04:41:13 - INFO - root -   eval_fbeta after step 1850: 0.939784049987793: 
+01/28/2021 04:41:13 - INFO - root -   lr after step 1850: 8.813750877901723e-06
+01/28/2021 04:41:13 - INFO - root -   train_loss after step 1850: 0.02699692752212286
+01/28/2021 04:41:21 - INFO - root -   Running evaluation
+01/28/2021 04:41:21 - INFO - root -     Num examples = 1204
+01/28/2021 04:41:21 - INFO - root -     Batch size = 16
+01/28/2021 04:41:23 - INFO - root -   eval_loss after step 1900: 0.034437219906402264: 
+01/28/2021 04:41:23 - INFO - root -   eval_roc_auc after step 1900: 0.9922437649004978: 
+01/28/2021 04:41:23 - INFO - root -   eval_fbeta after step 1900: 0.9461517333984375: 
+01/28/2021 04:41:23 - INFO - root -   lr after step 1900: 8.195082118879397e-06
+01/28/2021 04:41:23 - INFO - root -   train_loss after step 1900: 0.02809737253934145
+01/28/2021 04:41:31 - INFO - root -   Running evaluation
+01/28/2021 04:41:31 - INFO - root -     Num examples = 1204
+01/28/2021 04:41:31 - INFO - root -     Batch size = 16
+01/28/2021 04:41:34 - INFO - root -   eval_loss after step 1950: 0.03358637472908748: 
+01/28/2021 04:41:34 - INFO - root -   eval_roc_auc after step 1950: 0.992359118725235: 
+01/28/2021 04:41:34 - INFO - root -   eval_fbeta after step 1950: 0.9444906115531921: 
+01/28/2021 04:41:34 - INFO - root -   lr after step 1950: 7.583479919242108e-06
+01/28/2021 04:41:34 - INFO - root -   train_loss after step 1950: 0.026550163440406324
+01/28/2021 04:41:41 - INFO - root -   Running evaluation
+01/28/2021 04:41:41 - INFO - root -     Num examples = 1204
+01/28/2021 04:41:41 - INFO - root -     Batch size = 16
+01/28/2021 04:41:44 - INFO - root -   eval_loss after step 2000: 0.03305141667002126: 
+01/28/2021 04:41:44 - INFO - root -   eval_roc_auc after step 2000: 0.9915556085197734: 
+01/28/2021 04:41:44 - INFO - root -   eval_fbeta after step 2000: 0.9508582353591919: 
+01/28/2021 04:41:44 - INFO - root -   lr after step 2000: 6.981338805250015e-06
+01/28/2021 04:41:44 - INFO - root -   train_loss after step 2000: 0.025228937193751334
+01/28/2021 04:41:51 - INFO - root -   Running evaluation
+01/28/2021 04:41:51 - INFO - root -     Num examples = 1204
+01/28/2021 04:41:51 - INFO - root -     Batch size = 16
+01/28/2021 04:41:54 - INFO - root -   eval_loss after step 2050: 0.031870404356404355: 
+01/28/2021 04:41:54 - INFO - root -   eval_roc_auc after step 2050: 0.992631928041633: 
+01/28/2021 04:41:54 - INFO - root -   eval_fbeta after step 2050: 0.9541805386543274: 
+01/28/2021 04:41:54 - INFO - root -   lr after step 2050: 6.39101626140959e-06
+01/28/2021 04:41:54 - INFO - root -   train_loss after step 2050: 0.02553174551576376
+01/28/2021 04:42:02 - INFO - root -   Running evaluation
+01/28/2021 04:42:02 - INFO - root -     Num examples = 1204
+01/28/2021 04:42:02 - INFO - root -     Batch size = 16
+01/28/2021 04:42:04 - INFO - root -   eval_loss after step 2100: 0.03169361548498273: 
+01/28/2021 04:42:04 - INFO - root -   eval_roc_auc after step 2100: 0.9921179126058212: 
+01/28/2021 04:42:04 - INFO - root -   eval_fbeta after step 2100: 0.9501661062240601: 
+01/28/2021 04:42:04 - INFO - root -   lr after step 2100: 5.81482350052226e-06
+01/28/2021 04:42:04 - INFO - root -   train_loss after step 2100: 0.021434589102864266
+01/28/2021 04:42:12 - INFO - root -   Running evaluation
+01/28/2021 04:42:12 - INFO - root -     Num examples = 1204
+01/28/2021 04:42:12 - INFO - root -     Batch size = 16
+01/28/2021 04:42:15 - INFO - root -   eval_loss after step 2150: 0.03196194103771919: 
+01/28/2021 04:42:15 - INFO - root -   eval_roc_auc after step 2150: 0.9921428976708314: 
+01/28/2021 04:42:15 - INFO - root -   eval_fbeta after step 2150: 0.9497507810592651: 
+01/28/2021 04:42:15 - INFO - root -   lr after step 2150: 5.255016414894616e-06
+01/28/2021 04:42:15 - INFO - root -   train_loss after step 2150: 0.023726005852222443
+01/28/2021 04:42:22 - INFO - root -   Running evaluation
+01/28/2021 04:42:22 - INFO - root -     Num examples = 1204
+01/28/2021 04:42:22 - INFO - root -     Batch size = 16
+01/28/2021 04:42:25 - INFO - root -   eval_loss after step 2200: 0.03180375874140545: 
+01/28/2021 04:42:25 - INFO - root -   eval_roc_auc after step 2200: 0.9921702756109203: 
+01/28/2021 04:42:25 - INFO - root -   eval_fbeta after step 2200: 0.9446290135383606: 
+01/28/2021 04:42:25 - INFO - root -   lr after step 2200: 4.71378674413771e-06
+01/28/2021 04:42:25 - INFO - root -   train_loss after step 2200: 0.022446390688419342
+01/28/2021 04:42:33 - INFO - root -   Running evaluation
+01/28/2021 04:42:33 - INFO - root -     Num examples = 1204
+01/28/2021 04:42:33 - INFO - root -     Batch size = 16
+01/28/2021 04:42:35 - INFO - root -   eval_loss after step 2250: 0.031815965929509776: 
+01/28/2021 04:42:35 - INFO - root -   eval_roc_auc after step 2250: 0.9917829316522444: 
+01/28/2021 04:42:35 - INFO - root -   eval_fbeta after step 2250: 0.9485049843788147: 
+01/28/2021 04:42:35 - INFO - root -   lr after step 2250: 4.1932534941350545e-06
+01/28/2021 04:42:35 - INFO - root -   train_loss after step 2250: 0.023889829628169535
+01/28/2021 04:42:43 - INFO - root -   Running evaluation
+01/28/2021 04:42:43 - INFO - root -     Num examples = 1204
+01/28/2021 04:42:43 - INFO - root -     Batch size = 16
+01/28/2021 04:42:46 - INFO - root -   eval_loss after step 2300: 0.03211450302287152: 
+01/28/2021 04:42:46 - INFO - root -   eval_roc_auc after step 2300: 0.9912486091144137: 
+01/28/2021 04:42:46 - INFO - root -   eval_fbeta after step 2300: 0.9467054605484009: 
+01/28/2021 04:42:46 - INFO - root -   lr after step 2300: 3.69545464077548e-06
+01/28/2021 04:42:46 - INFO - root -   train_loss after step 2300: 0.024360059909522534
+01/28/2021 04:42:53 - INFO - root -   Running evaluation
+01/28/2021 04:42:53 - INFO - root -     Num examples = 1204
+01/28/2021 04:42:53 - INFO - root -     Batch size = 16
+01/28/2021 04:42:56 - INFO - root -   eval_loss after step 2350: 0.031636179939500596: 
+01/28/2021 04:42:56 - INFO - root -   eval_roc_auc after step 2350: 0.9919567492356597: 
+01/28/2021 04:42:56 - INFO - root -   eval_fbeta after step 2350: 0.946290135383606: 
+01/28/2021 04:42:56 - INFO - root -   lr after step 2350: 3.2223391509321335e-06
+01/28/2021 04:42:56 - INFO - root -   train_loss after step 2350: 0.02182407971471548
+01/28/2021 04:43:03 - INFO - root -   Running evaluation
+01/28/2021 04:43:03 - INFO - root -     Num examples = 1204
+01/28/2021 04:43:03 - INFO - root -     Batch size = 16
+01/28/2021 04:43:06 - INFO - root -   eval_loss after step 2400: 0.030959977474259704: 
+01/28/2021 04:43:06 - INFO - root -   eval_roc_auc after step 2400: 0.9923110672067637: 
+01/28/2021 04:43:06 - INFO - root -   eval_fbeta after step 2400: 0.9458748698234558: 
+01/28/2021 04:43:06 - INFO - root -   lr after step 2400: 2.7757593519269088e-06
+01/28/2021 04:43:06 - INFO - root -   train_loss after step 2400: 0.021097109653055668
+01/28/2021 04:43:07 - INFO - root -   Running evaluation
+01/28/2021 04:43:07 - INFO - root -     Num examples = 1204
+01/28/2021 04:43:07 - INFO - root -     Batch size = 16
+01/28/2021 04:43:10 - INFO - root -   eval_loss after epoch 4: 0.030945909993821068: 
+01/28/2021 04:43:10 - INFO - root -   eval_roc_auc after epoch 4: 0.99229765848335: 
+01/28/2021 04:43:10 - INFO - root -   eval_fbeta after epoch 4: 0.9461517333984375: 
+01/28/2021 04:43:10 - INFO - root -   lr after epoch 4: 2.706887439265179e-06
+01/28/2021 04:43:10 - INFO - root -   train_loss after epoch 4: 0.02407210770734521
+01/28/2021 04:43:10 - INFO - root -   
+
+01/28/2021 04:43:17 - INFO - root -   Running evaluation
+01/28/2021 04:43:17 - INFO - root -     Num examples = 1204
+01/28/2021 04:43:17 - INFO - root -     Batch size = 16
+01/28/2021 04:43:19 - INFO - root -   eval_loss after step 2450: 0.030711444879048748: 
+01/28/2021 04:43:19 - INFO - root -   eval_roc_auc after step 2450: 0.9920826662026357: 
+01/28/2021 04:43:19 - INFO - root -   eval_fbeta after step 2450: 0.9465670585632324: 
+01/28/2021 04:43:19 - INFO - root -   lr after step 2450: 2.3574636793550363e-06
+01/28/2021 04:43:19 - INFO - root -   train_loss after step 2450: 0.019477992467582226
+01/28/2021 04:43:27 - INFO - root -   Running evaluation
+01/28/2021 04:43:27 - INFO - root -     Num examples = 1204
+01/28/2021 04:43:27 - INFO - root -     Batch size = 16
+01/28/2021 04:43:30 - INFO - root -   eval_loss after step 2500: 0.030454500357767467: 
+01/28/2021 04:43:30 - INFO - root -   eval_roc_auc after step 2500: 0.9921981062571053: 
+01/28/2021 04:43:30 - INFO - root -   eval_fbeta after step 2500: 0.9468438029289246: 
+01/28/2021 04:43:30 - INFO - root -   lr after step 2500: 1.969089831663443e-06
+01/28/2021 04:43:30 - INFO - root -   train_loss after step 2500: 0.021762838326394557
+01/28/2021 04:43:37 - INFO - root -   Running evaluation
+01/28/2021 04:43:37 - INFO - root -     Num examples = 1204
+01/28/2021 04:43:37 - INFO - root -     Batch size = 16
+01/28/2021 04:43:40 - INFO - root -   eval_loss after step 2550: 0.03049850270250126: 
+01/28/2021 04:43:40 - INFO - root -   eval_roc_auc after step 2550: 0.9921042236357767: 
+01/28/2021 04:43:40 - INFO - root -   eval_fbeta after step 2550: 0.9472591280937195: 
+01/28/2021 04:43:40 - INFO - root -   lr after step 2550: 1.6121583582837773e-06
+01/28/2021 04:43:40 - INFO - root -   train_loss after step 2550: 0.019031947925686837
+01/28/2021 04:43:47 - INFO - root -   Running evaluation
+01/28/2021 04:43:47 - INFO - root -     Num examples = 1204
+01/28/2021 04:43:47 - INFO - root -     Batch size = 16
+01/28/2021 04:43:50 - INFO - root -   eval_loss after step 2600: 0.030166273127849166: 
+01/28/2021 04:43:50 - INFO - root -   eval_roc_auc after step 2600: 0.9920567757254336: 
+01/28/2021 04:43:50 - INFO - root -   eval_fbeta after step 2600: 0.9465670585632324: 
+01/28/2021 04:43:50 - INFO - root -   lr after step 2600: 1.2880667064237006e-06
+01/28/2021 04:43:50 - INFO - root -   train_loss after step 2600: 0.020100504495203494
+01/28/2021 04:43:58 - INFO - root -   Running evaluation
+01/28/2021 04:43:58 - INFO - root -     Num examples = 1204
+01/28/2021 04:43:58 - INFO - root -     Batch size = 16
+01/28/2021 04:44:00 - INFO - root -   eval_loss after step 2650: 0.02991869457458195: 
+01/28/2021 04:44:00 - INFO - root -   eval_roc_auc after step 2650: 0.9921554225394863: 
+01/28/2021 04:44:00 - INFO - root -   eval_fbeta after step 2650: 0.9478129148483276: 
+01/28/2021 04:44:00 - INFO - root -   lr after step 2650: 9.980837498242357e-07
+01/28/2021 04:44:00 - INFO - root -   train_loss after step 2650: 0.020597930401563644
+01/28/2021 04:44:08 - INFO - root -   Running evaluation
+01/28/2021 04:44:08 - INFO - root -     Num examples = 1204
+01/28/2021 04:44:08 - INFO - root -     Batch size = 16
+01/28/2021 04:44:10 - INFO - root -   eval_loss after step 2700: 0.029961324738044488: 
+01/28/2021 04:44:10 - INFO - root -   eval_roc_auc after step 2700: 0.9920153423389367: 
+01/28/2021 04:44:10 - INFO - root -   eval_fbeta after step 2700: 0.9476743936538696: 
+01/28/2021 04:44:10 - INFO - root -   lr after step 2700: 7.433448209040495e-07
+01/28/2021 04:44:10 - INFO - root -   train_loss after step 2700: 0.01921854604035616
+01/28/2021 04:44:18 - INFO - root -   Running evaluation
+01/28/2021 04:44:18 - INFO - root -     Num examples = 1204
+01/28/2021 04:44:18 - INFO - root -     Batch size = 16
+01/28/2021 04:44:21 - INFO - root -   eval_loss after step 2750: 0.02984997699968517: 
+01/28/2021 04:44:21 - INFO - root -   eval_roc_auc after step 2750: 0.9919968245038684: 
+01/28/2021 04:44:21 - INFO - root -   eval_fbeta after step 2750: 0.9476743936538696: 
+01/28/2021 04:44:21 - INFO - root -   lr after step 2750: 5.248472657406123e-07
+01/28/2021 04:44:21 - INFO - root -   train_loss after step 2750: 0.019625074714422226
+01/28/2021 04:44:28 - INFO - root -   Running evaluation
+01/28/2021 04:44:28 - INFO - root -     Num examples = 1204
+01/28/2021 04:44:28 - INFO - root -     Batch size = 16
+01/28/2021 04:44:31 - INFO - root -   eval_loss after step 2800: 0.029849436930625847: 
+01/28/2021 04:44:31 - INFO - root -   eval_roc_auc after step 2800: 0.9919844936521119: 
+01/28/2021 04:44:31 - INFO - root -   eval_fbeta after step 2800: 0.9476743936538696: 
+01/28/2021 04:44:31 - INFO - root -   lr after step 2800: 3.4344653929129554e-07
+01/28/2021 04:44:31 - INFO - root -   train_loss after step 2800: 0.01917021904140711
+01/28/2021 04:44:38 - INFO - root -   Running evaluation
+01/28/2021 04:44:38 - INFO - root -     Num examples = 1204
+01/28/2021 04:44:38 - INFO - root -     Batch size = 16
+01/28/2021 04:44:41 - INFO - root -   eval_loss after step 2850: 0.029879701446349684: 
+01/28/2021 04:44:41 - INFO - root -   eval_roc_auc after step 2850: 0.9919633242527676: 
+01/28/2021 04:44:41 - INFO - root -   eval_fbeta after step 2850: 0.9489202499389648: 
+01/28/2021 04:44:41 - INFO - root -   lr after step 2850: 1.998528561422297e-07
+01/28/2021 04:44:41 - INFO - root -   train_loss after step 2850: 0.020477211847901345
+01/28/2021 04:44:48 - INFO - root -   Running evaluation
+01/28/2021 04:44:48 - INFO - root -     Num examples = 1204
+01/28/2021 04:44:48 - INFO - root -     Batch size = 16
+01/28/2021 04:44:51 - INFO - root -   eval_loss after step 2900: 0.02988111608857779: 
+01/28/2021 04:44:51 - INFO - root -   eval_roc_auc after step 2900: 0.9919594439148022: 
+01/28/2021 04:44:51 - INFO - root -   eval_fbeta after step 2900: 0.9496124386787415: 
+01/28/2021 04:44:51 - INFO - root -   lr after step 2900: 9.462840989784671e-08
+01/28/2021 04:44:51 - INFO - root -   train_loss after step 2900: 0.018227386325597762
+01/28/2021 04:44:59 - INFO - root -   Running evaluation
+01/28/2021 04:44:59 - INFO - root -     Num examples = 1204
+01/28/2021 04:44:59 - INFO - root -     Batch size = 16
+01/28/2021 04:45:01 - INFO - root -   eval_loss after step 2950: 0.029869659521960114: 
+01/28/2021 04:45:01 - INFO - root -   eval_roc_auc after step 2950: 0.9919664069657067: 
+01/28/2021 04:45:01 - INFO - root -   eval_fbeta after step 2950: 0.9489202499389648: 
+01/28/2021 04:45:01 - INFO - root -   lr after step 2950: 2.8185172097641156e-08
+01/28/2021 04:45:01 - INFO - root -   train_loss after step 2950: 0.020805617086589335
+01/28/2021 04:45:09 - INFO - root -   Running evaluation
+01/28/2021 04:45:09 - INFO - root -     Num examples = 1204
+01/28/2021 04:45:09 - INFO - root -     Batch size = 16
+01/28/2021 04:45:11 - INFO - root -   eval_loss after step 3000: 0.0298666662512053: 
+01/28/2021 04:45:11 - INFO - root -   eval_roc_auc after step 3000: 0.9919736933781084: 
+01/28/2021 04:45:11 - INFO - root -   eval_fbeta after step 3000: 0.9489202499389648: 
+01/28/2021 04:45:11 - INFO - root -   lr after step 3000: 7.832792777739962e-10
+01/28/2021 04:45:11 - INFO - root -   train_loss after step 3000: 0.019669891633093357
+01/28/2021 04:45:13 - INFO - root -   Running evaluation
+01/28/2021 04:45:13 - INFO - root -     Num examples = 1204
+01/28/2021 04:45:13 - INFO - root -     Batch size = 16
+01/28/2021 04:45:15 - INFO - root -   eval_loss after epoch 5: 0.02986591499249794: 
+01/28/2021 04:45:15 - INFO - root -   eval_roc_auc after epoch 5: 0.9919739736247392: 
+01/28/2021 04:45:15 - INFO - root -   eval_fbeta after epoch 5: 0.9496124386787415: 
+01/28/2021 04:45:15 - INFO - root -   lr after epoch 5: 0.0
+01/28/2021 04:45:15 - INFO - root -   train_loss after epoch 5: 0.019879615191135097
+01/28/2021 04:45:15 - INFO - root -   
+
+01/28/2021 04:45:41 - INFO - root -   Running evaluation
+01/28/2021 04:45:41 - INFO - root -     Num examples = 1204
+01/28/2021 04:45:41 - INFO - root -     Batch size = 16
+01/28/2021 04:46:40 - INFO - transformers.configuration_utils -   Configuration saved in finetuned_models\model_out\config.json
+01/28/2021 04:46:41 - INFO - transformers.modeling_utils -   Model weights saved in finetuned_models\model_out\pytorch_model.bin
+01/28/2021 04:46:52 - INFO - root -   Writing example 0 of 2
+01/28/2021 04:47:39 - INFO - transformers.configuration_utils -   loading configuration file finetuned_models/model_out\config.json
+01/28/2021 04:47:39 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "architectures": [
+    "BertForMultiLabelSequenceClassification"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "gradient_checkpointing": false,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1",
+    "2": "LABEL_2",
+    "3": "LABEL_3",
+    "4": "LABEL_4",
+    "5": "LABEL_5",
+    "6": "LABEL_6",
+    "7": "LABEL_7",
+    "8": "LABEL_8",
+    "9": "LABEL_9",
+    "10": "LABEL_10",
+    "11": "LABEL_11",
+    "12": "LABEL_12",
+    "13": "LABEL_13",
+    "14": "LABEL_14",
+    "15": "LABEL_15",
+    "16": "LABEL_16"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1,
+    "LABEL_10": 10,
+    "LABEL_11": 11,
+    "LABEL_12": 12,
+    "LABEL_13": 13,
+    "LABEL_14": 14,
+    "LABEL_15": 15,
+    "LABEL_16": 16,
+    "LABEL_2": 2,
+    "LABEL_3": 3,
+    "LABEL_4": 4,
+    "LABEL_5": 5,
+    "LABEL_6": 6,
+    "LABEL_7": 7,
+    "LABEL_8": 8,
+    "LABEL_9": 9
+  },
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "type_vocab_size": 2,
+  "vocab_size": 28996
+}
+
+01/28/2021 04:47:39 - INFO - transformers.tokenization_utils_base -   Model name 'finetuned_models/model_out' not found in model shortcut name list (bert-base-uncased, bert-large-uncased, bert-base-cased, bert-large-cased, bert-base-multilingual-uncased, bert-base-multilingual-cased, bert-base-chinese, bert-base-german-cased, bert-large-uncased-whole-word-masking, bert-large-cased-whole-word-masking, bert-large-uncased-whole-word-masking-finetuned-squad, bert-large-cased-whole-word-masking-finetuned-squad, bert-base-cased-finetuned-mrpc, bert-base-german-dbmdz-cased, bert-base-german-dbmdz-uncased, TurkuNLP/bert-base-finnish-cased-v1, TurkuNLP/bert-base-finnish-uncased-v1, wietsedv/bert-base-dutch-cased). Assuming 'finetuned_models/model_out' is a path, a model identifier, or url to a directory containing tokenizer files.
+01/28/2021 04:47:39 - INFO - transformers.tokenization_utils_base -   Didn't find file finetuned_models/model_out\added_tokens.json. We won't load it.
+01/28/2021 04:47:39 - INFO - transformers.tokenization_utils_base -   Didn't find file finetuned_models/model_out\tokenizer.json. We won't load it.
+01/28/2021 04:47:39 - INFO - transformers.tokenization_utils_base -   loading file finetuned_models/model_out\vocab.txt
+01/28/2021 04:47:39 - INFO - transformers.tokenization_utils_base -   loading file None
+01/28/2021 04:47:39 - INFO - transformers.tokenization_utils_base -   loading file finetuned_models/model_out\special_tokens_map.json
+01/28/2021 04:47:39 - INFO - transformers.tokenization_utils_base -   loading file finetuned_models/model_out\tokenizer_config.json
+01/28/2021 04:47:39 - INFO - transformers.tokenization_utils_base -   loading file None
+01/28/2021 04:47:39 - INFO - transformers.configuration_utils -   loading configuration file finetuned_models/model_out\config.json
+01/28/2021 04:47:39 - INFO - transformers.configuration_utils -   Model config BertConfig {
+  "architectures": [
+    "BertForMultiLabelSequenceClassification"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "gradient_checkpointing": false,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1",
+    "2": "LABEL_2",
+    "3": "LABEL_3",
+    "4": "LABEL_4",
+    "5": "LABEL_5",
+    "6": "LABEL_6",
+    "7": "LABEL_7",
+    "8": "LABEL_8",
+    "9": "LABEL_9",
+    "10": "LABEL_10",
+    "11": "LABEL_11",
+    "12": "LABEL_12",
+    "13": "LABEL_13",
+    "14": "LABEL_14",
+    "15": "LABEL_15",
+    "16": "LABEL_16"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1,
+    "LABEL_10": 10,
+    "LABEL_11": 11,
+    "LABEL_12": 12,
+    "LABEL_13": 13,
+    "LABEL_14": 14,
+    "LABEL_15": 15,
+    "LABEL_16": 16,
+    "LABEL_2": 2,
+    "LABEL_3": 3,
+    "LABEL_4": 4,
+    "LABEL_5": 5,
+    "LABEL_6": 6,
+    "LABEL_7": 7,
+    "LABEL_8": 8,
+    "LABEL_9": 9
+  },
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "type_vocab_size": 2,
+  "vocab_size": 28996
+}
+
+01/28/2021 04:47:39 - INFO - transformers.modeling_utils -   loading weights file finetuned_models/model_out\pytorch_model.bin
+01/28/2021 04:47:41 - INFO - transformers.modeling_utils -   All model checkpoint weights were used when initializing BertForMultiLabelSequenceClassification.
+
+01/28/2021 04:47:41 - INFO - transformers.modeling_utils -   All the weights of BertForMultiLabelSequenceClassification were initialized from the model checkpoint at finetuned_models/model_out.
+If your task is similar to the task the model of the ckeckpoint was trained on, you can already use BertForMultiLabelSequenceClassification for predictions without further training.
+01/28/2021 04:48:09 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:48:21 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:48:27 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:48:31 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:48:44 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:49:08 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:49:21 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:49:28 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:49:33 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:49:37 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:49:41 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:50:07 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:50:18 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:50:23 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:50:26 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:50:32 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:50:50 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:51:05 - INFO - root -   Writing example 0 of 1
+01/28/2021 04:52:44 - INFO - root -   Writing example 0 of 2
+01/28/2021 04:59:49 - INFO - root -   Writing example 0 of 1324

@@ -1,0 +1,121 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font: 20px Robot;
+    background-color: #F5F5F5
+}
+#mainWrapper{
+    width: 1080px;
+	margin: 0 auto;
+}
+#Wrapper{
+    border: 1px solid #F5F5F5;
+    width: 1080px;
+    padding: 10px 10px 10px 25px;
+    margin: 0 auto;
+    background-color: white;
+}
+.clear:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.Wrapper-top{
+    border-bottom: 1px dashed #36343428;
+    border-radius: 8px;
+}
+.top-head{
+    padding-left: 15px;
+    margin-bottom: 50px;
+    text-align: left;
+    color: rgb(0, 173, 241);
+}
+.top-middle{
+    text-align: center;
+}
+.formA{
+    text-indent: 20px;
+    width: 80%;
+    padding: 8px 0 8px;
+    border-radius: 12px;
+    border: 2px solid silver;
+    margin-bottom: 15px;
+    outline-style: none;
+}
+.grid-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 30px;
+}
+.input-file{
+    width: 35%;
+    position: relative;
+    display: inline-block;
+    /* background:#0e07079d; */
+    /* border: 1px solid #99D3F5; */
+    border-radius:15px;
+    padding: 4px 6px;
+    overflow: hidden;
+    color: white;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+    margin-left: 79px;
+    border: 1px solid rgb(0, 171, 241,0.4);
+    cursor: pointer;
+    background-color: #00adf1;
+}
+.formB {
+    position: absolute;
+    /* font-size: 100px; */
+    right: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+.formC{
+    display: inline-block;
+    float: right;
+    margin-right: 80px;
+    padding: 6px 9px 6px;
+    border-radius: 15px;
+    background-color: #20313b9d;
+    border: 1px solid #0e07079d;
+    color: white;
+    /* color: #5107c7; */
+    outline-style: none;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0,255,0,0.2),0 6px 20px 0 rgba(0,0,255,0.1);
+}
+.Wrapper-middle{
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+.formD{
+    background:#00adf1;
+    color: white;
+    border: 1px solid rgb(0, 171, 241,0.4);
+    transition-duration: 1s;
+    border-radius: 12px;
+    padding: 18px 25px;
+    margin-top: 20px;
+    outline-style: none;
+    font-size: 20px;
+}
+.formD:hover{
+    background: #00adf133;
+    cursor: pointer;
+    color: rgb(80, 80, 80);
+    transition-duration: 1s;
+}
+
+.col{
+    float: left;
+}
+.span_1_of_2{
+    width: 50%;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Home</title>
+	<link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
+	<script src="{{ url_for('static',filename='jquery.js') }}"></script>
+	<!--Load the AJAX API-->
+	<!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script> -->
+	<script type="text/javascript" src="{{ url_for('static',filename='loader.js') }}"></script>
+	<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+	<script src="{{ url_for('static',filename='socketio.js') }}"></script>
+</head>
+
+<body>
+	<div id="mainWrapper ">
+		<div id="Wrapper" class="clear">
+			<form enctype="multipart/form-data" id="frm" action="#" method="POST">
+				<div class="Wrapper-top">
+					<div class="top-head">
+						<img src="/static/logo.png" height="80" width="400" alt="logo" />
+						<h3>UNEP Text Analysis Tool</h3>
+					</div>
+
+					<div class="top-middle">
+						<!-- <input type="text" name="text" class="formA" placeholder="Upload your text..."> -->
+						<div class="grid-wrapper">
+							<div class="input-file">
+								Choose your file..
+								<input type="file" name="file" class="formB" onchange="updateUploadFileHint(this)" />
+							</div>
+							<p><strong id="uploadFileHint"></strong></p>
+							<div>
+								<!-- <input type="submit" value="UPLOAD" class="formC"> -->
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</form>
+			<div class="Wrapper-middle">
+				<button name="analysis" id="analysis" class="formD">Analyse</button>
+				<div id="status"></div>
+			</div>
+		</div>
+	</div>
+	<div id="mainWrapper ">
+		<div id="Wrapper" class="clear">
+			<h3>
+				<p style="color:#00abf1" ;>Analysis Results of Data Correlation.</p>
+				<h3>
+					<br />
+					<!--<div class="col span_1_of_2">-->
+					<center>
+						<div id="chart_div2" style="width:1000; height:600"></div>
+					</center>
+					<!--</div>-->
+					<!--<div class="col span_1_of_2">-->
+					<center>
+						<div id="chart_div" style="width:800; height:800"></div>
+					</center>
+					<!--</div>-->
+		</div>
+	</div>
+	<script src="{{ url_for('static',filename='main.js') }}"></script>
+</body>
+
+</html>
