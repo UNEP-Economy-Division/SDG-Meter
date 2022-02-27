@@ -1,2 +1,4 @@
 # large models are not uploaded
-sliding_window/pretrained_models
+sliding_window/pretrained_models/
+sliding_window/lightning/lightning_logs
+__pycache__/
