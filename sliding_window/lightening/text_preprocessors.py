@@ -1,22 +1,18 @@
+import os, sys
 import torch
+
 # Functions for preparing input for longer texts - based on
 # https://www.kdnuggets.com/2021/04/apply-transformers-any-length-text.html
-from config import DEFAULT_PARAMS_TOKENIZER
-MAX_TEXT_SIZE = DEFAULT_PARAMS_TOKENIZER['max_text_length']
 
 class BERTTokenizerPooled():
-    def __init__(self, tokenizer, size=MAX_TEXT_SIZE, step=MAX_TEXT_SIZE, minimal_length=DEFAULT_PARAMS_TOKENIZER['minimal_length']):
+    def __init__(self, tokenizer, size, step, minimal_length):
         self.tokenizer = tokenizer
         self.text_splits_params = [size, step, minimal_length]
-        
-    def preprocess(self, text: str):
-        model_input =  transform_text_to_model_input(text, self.tokenizer, *self.text_splits_params)
-        return {'input_ids': model_input[0], 'attention_mask': model_input[1]}
 
-    def preprocess_texts(self, array_of_texts: list):
-        return tokenize_pooled(
-            array_of_texts, self.tokenizer, *self.text_splits_params
-        )
+    def preprocess(self, array_of_texts):
+        print("Preprocessing...")
+        token = tokenize_pooled(array_of_texts, self.tokenizer, *self.text_splits_params)
+        return token
 
 def tokenize_pooled(texts, tokenizer, size, step, minimal_length):
     '''
@@ -42,7 +38,8 @@ def tokenize_pooled(texts, tokenizer, size, step, minimal_length):
             minimal_length) for text in texts]
     input_ids = [model_input[0] for model_input in model_inputs]
     attention_mask = [model_input[1] for model_input in model_inputs]
-    return {'input_ids': input_ids, 'attention_mask': attention_mask}
+    tokens = {'input_ids': input_ids, 'attention_mask': attention_mask}
+    return tokens
 
 
 def tokenize_all_text(text, tokenizer):
@@ -61,9 +58,9 @@ def tokenize_all_text(text, tokenizer):
     'attention_mask' : [...]
     }
     '''
-    return tokenizer.encode_plus(
-        text=text, truncation=False, add_special_tokens=False, return_tensors='pt', verbose=False
-    )
+    tokens = tokenizer.encode_plus(text, truncation = False, add_special_tokens=False,
+                                   return_tensors='pt')
+    return tokens
 
 
 def split_overlapping(array, size, step, minimal_length):
@@ -77,6 +74,7 @@ def split_overlapping(array, size, step, minimal_length):
 
 def split_tokens_into_smaller_chunks(tokens, size, step, minimal_length):
     ''' Splits tokens into overlapping chunks with given size and step'''
+    assert size <= 510
     input_id_chunks = split_overlapping(tokens['input_ids'][0], size, step, minimal_length)
     mask_chunks = split_overlapping(tokens['attention_mask'][0], size, step, minimal_length)
     return input_id_chunks, mask_chunks
@@ -119,15 +117,10 @@ def stack_tokens_from_all_chunks(input_id_chunks, mask_chunks):
 def transform_text_to_model_input(
         text,
         tokenizer,
-        size,
-        step,
-        minimal_length=1):
+        size=510,
+        step=510,
+        minimal_length=100):
     ''' Transforms the entire text to model input of BERT model'''
-    
-    assert size <= MAX_TEXT_SIZE
-    assert 0 <= minimal_length <= MAX_TEXT_SIZE
-    
-    
     tokens = tokenize_all_text(text, tokenizer)
     input_id_chunks, mask_chunks = split_tokens_into_smaller_chunks(
         tokens, size, step, minimal_length)

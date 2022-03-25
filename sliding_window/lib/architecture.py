@@ -1,4 +1,3 @@
-import torch
 import torch.nn as nn
 
 
@@ -35,12 +34,12 @@ class BERTSequenceClassificationHead(nn.Module):
 
 class BERTSequenceClassificationArch(nn.Module):
 
-    def __init__(self, bert):
+    def __init__(self, bert, num_labels=1):
 
         super().__init__()
 
         self.bert = bert
-        self.classification_head = BERTSequenceClassificationHead()
+        self.classification_head = BERTSequenceClassificationHead(num_labels)
 
     # define the forward pass
     def forward(self, input_ids, attention_mask):
@@ -52,6 +51,5 @@ class BERTSequenceClassificationArch(nn.Module):
         x = sequence_output[:, 0, :]  # take <s> token (equiv. to [CLS])
 
         # pass vectorized output to classification head
-
         x = self.classification_head(x)
         return x

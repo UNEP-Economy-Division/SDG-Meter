@@ -6,7 +6,7 @@ class TextDataset(Dataset):
 
     def __init__(self, texts, labels):
         self.texts = texts
-        self.labels = labels
+        self.labels = labels.to_numpy()
 
     def __len__(self):
         return len(self.labels)
@@ -21,13 +21,17 @@ class TokenizedDataset(Dataset):
     def __init__(self, tokens, labels):
         self.input_ids = tokens['input_ids']
         self.attention_mask = tokens['attention_mask']
-        self.labels = labels
+        self.labels = labels.to_numpy()
 
     def __len__(self):
         return len(self.labels)
 
     def __getitem__(self, idx):
-        return self.input_ids[idx], self.attention_mask[idx], self.labels[idx]
+        print(idx)
+        i = self.input_ids[idx]
+        a = self.attention_mask[idx]
+        l = self.labels[idx]
+        return i, a, l
 
 
 def collate_fn_pooled_tokens(data):

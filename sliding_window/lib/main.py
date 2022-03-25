@@ -24,7 +24,7 @@ class BERTClassificationModelWithPooling(Model):
             tokenizer, params['size'], params['step'], params['minimal_length'])
         self.dataset_class = TokenizedDataset
         self.collate_fn = collate_fn_pooled_tokens
-        self.nn = initialize_model(bert, self.params['device'])
+        self.nn = initialize_model(bert, self.params['device'], self.params['num_labels'])
         self.optimizer = AdamW(self.nn.parameters(), lr=self.params['learning_rate'])          # learning rate
 
     def evaluate_single_batch(self, batch, model, device):
@@ -42,7 +42,7 @@ class BERTClassificationModelWithPooling(Model):
         input_ids_combined_tensors = torch.stack(
             [torch.tensor(x).to(device) for x in input_ids_combined])
 
-        # concatenate all attention maska into one batch
+        # concatenate all attention mask into one batch
 
         attention_mask_combined = []
         for x in attention_mask:
@@ -55,12 +55,12 @@ class BERTClassificationModelWithPooling(Model):
         preds = model(
             input_ids_combined_tensors,
             attention_mask_combined_tensors)
-
-        preds = preds.flatten().cpu()
-
+            
+        # preds = preds.flatten().cpu()
         # split result preds into chunks
-
         preds_split = preds.split(number_of_chunks)
+        print(preds.shape)
+        print("prediction splits\n", preds_split)
 
         # pooling
         if self.params['pooling_strategy'] == 'mean':
@@ -87,9 +87,9 @@ def load_pretrained_model():
     return tokenizer, model
 
 
-def initialize_model(bert, device):
+def initialize_model(bert, device, num_labels):
     # pass the pre-trained BERT model to our defined architecture
-    model = BERTSequenceClassificationArch(bert)
+    model = BERTSequenceClassificationArch(bert, num_labels)
     # push the model to GPU/CPU
     model = model.to(device)
     # run on multiple GPU's

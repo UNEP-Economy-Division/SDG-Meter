@@ -218,6 +218,8 @@ def create_dataloaders(train_data, test_data, batch_size, collate_fn=None):
 
 def calc_loss_and_accuracy(preds, labels, total_loss, total_accurate):
     cross_entropy = nn.BCELoss(reduction='sum')
+    print(preds)
+    print(labels)
     loss = cross_entropy(preds, labels)
 
     total_loss = total_loss + loss.detach().cpu().numpy()

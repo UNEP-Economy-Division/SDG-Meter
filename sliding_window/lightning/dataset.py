@@ -1,13 +1,9 @@
-from errno import ECONNABORTED
+from lib2to3.pgen2 import token
 from torch.utils.data import Dataset
 import torch
 import pandas as pd
-from transformers import BertTokenizer
-from tokenizer import BERTTokenizerPooled
 
-from copy import deepcopy
-
-from config import DEFAULT_PARAMS_TOKENIZER, DEFAULT_PARAMS_DATA
+from config import DEFAULT_PARAMS_DATA
 
 # torch.multiprocessing.set_start_method('spawn')
 
@@ -15,10 +11,9 @@ class SGDDataset(Dataset):
     def __init__(
         self, 
         data: pd.DataFrame,
-        tokenizer: BertTokenizer,
+        tokenizer,
     ):
-        self.tokenizer = BERTTokenizerPooled(tokenizer, DEFAULT_PARAMS_TOKENIZER['size'], DEFAULT_PARAMS_TOKENIZER['step'], DEFAULT_PARAMS_TOKENIZER['minimal_length'])
-
+        self.tokenizer = tokenizer
         self.data = data
         self.text_column = DEFAULT_PARAMS_DATA['text_column']
         self.label_columns = DEFAULT_PARAMS_DATA['label_columns']
@@ -35,7 +30,6 @@ class SGDDataset(Dataset):
         encoding = self.tokenizer.preprocess(text)
 
         return dict(
-            text=text,
             input_ids=encoding["input_ids"],
             attention_mask=encoding["attention_mask"],
             labels=torch.FloatTensor(labels)

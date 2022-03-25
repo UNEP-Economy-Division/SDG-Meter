@@ -1,7 +1,7 @@
 MODEL_LOAD_FROM_FILE = True
 MODEL_PATH = "pretrained_models/roberta"
-VISIBLE_GPUS = 0
-BERT_MODEL_NAME = 'bert-base-cased'
+NUM_GPUS = 1
+# BERT_MODEL_NAME = 'roberta-base'
 
 DEFAULT_PARAMS_TOKENIZER = {
     'size': 510,
@@ -11,11 +11,13 @@ DEFAULT_PARAMS_TOKENIZER = {
 }
 
 DEFAULT_PARAMS_BERT_WITH_POOLING = {
+    'bert_model' : 'distilroberta-base',
     'device' : 'cuda',
-    'batch_size' : 6,
-    'learning_rate' : 5e-6,
-    'pooling_strategy': 'mean', # options: ['mean','max']
-    'number_of_epochs': 10,
+    'num_gpus' : 1,
+    'batch_size' : 16,
+    'learning_rate' : 2e-6,
+    'pooling_strategy': 'max', # options: ['mean','max']
+    'num_epochs': 10,
 }
 
 DEFAULT_PARAMS_DATA = {

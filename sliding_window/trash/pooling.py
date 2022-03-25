@@ -20,7 +20,7 @@ def tokenize_all_text(text, tokenizer):
     'attention_mask' : [...]
     }
     '''
-    tokens = tokenizer.encode_plus(text, add_special_tokens=False,
+    tokens = tokenizer.encode_plus(text, truncation = False, add_special_tokens=False,
                                    return_tensors='pt')
     return tokens
 
@@ -37,10 +37,8 @@ def split_overlapping(array, size, step, minimal_length):
 def split_tokens_into_smaller_chunks(tokens, size, step, minimal_length):
     ''' Splits tokens into overlapping chunks with given size and step'''
     assert size <= 510
-    input_id_chunks = split_overlapping(
-        tokens['input_ids'][0], size, step, minimal_length)
-    mask_chunks = split_overlapping(
-        tokens['attention_mask'][0], size, step, minimal_length)
+    input_id_chunks = split_overlapping(tokens['input_ids'][0], size, step, minimal_length)
+    mask_chunks = split_overlapping(tokens['attention_mask'][0], size, step, minimal_length)
     return input_id_chunks, mask_chunks
 
 
